@@ -83,5 +83,50 @@ Las restricciones establecen **limitaciones** en la arquitectura del sistema, ya
 - **Servicio de Validación:** Optimizado para consultas rápidas de códigos QR , permitiendo la validación incluso con señal intermitente
 - **Servicio de Auditoría:** Registro centralizado de acciones de organizadores y cambios de precios para trazabilidad
 
+---
 
+## 7. Contratos de API (Endpoints Principales)
+
+> Para asegurar que los equipos puedan trabajar en paralelo sin que un servicio "toque la base de datos de otro", definimos los puntos de contacto clave:
+
+**Servicio de Eventos**
+
+- GET /events: Lista eventos disponibles para el público
+- POST /events: Creación de evento y definición de tipos de boletas/cupos (Solo Organizador/Admin)
+- PATCH /events/{id}/prices: Actualización de precios o cupos con rastro de auditoría
+
+
+**Servicio de Órdenes y Pagos**
+
+- POST /orders: Inicia el flujo de compra y crea la reserva temporal de inventario para evitar sobreventa
+- POST /payments/webhook: Recibe la confirmación asíncrona de la pasarela real (Sandbox) para marcar la orden como pagada
+- GET /orders/{id}/status: Permite al cliente ver si su pago fue exitoso, fallido o sigue pendiente
+
+**Servicio de Validación**
+
+- POST /tickets/validate: Recibe el código QR y retorna éxito o error (ej. "ya usado" o "inexistente") de forma eficiente
+
+
+---
+
+# 8. Plan de Ejecución (MVP en 13 Semanas)
+
+| **Fase**    | **Semanas**         | **Entregables Clave**         | 
+| ----------- | --------------------- | ----------------------------- | 
+| Cimientos | 1 - 3 | Configuración de microservicios con Docker, API Gateway y Auth (Roles/Permisos) |
+| Core de Venta | 4 - 7 | CRUD de Eventos, Lógica de Reserva de Inventario e Integración con Pasarela (Sandbox) |
+| Logística y Avisos | 8 - 10 | Generación de QR, Servicio de Notificaciones (Asíncrono) y App de Validación para portería |
+| Trazabilidad y Dashboard | 11 - 12 | Implementación de logs de auditoría y métricas en tiempo real para la gerencia |
+| Estabilización | 13 | Pruebas de carga (simulando picos de miles de usuarios) y documentación final en el repo |
+
+
+---
+
+# 9. Estrategia de Resiliencia (Manejo de Fallas)
+
+> Para cumplir con la visión de que "no se caiga todo si una parte falla":
+
+- **Notificaciones en segundo plano:** Si el servicio de correos falla, la venta se completa y el mensaje queda en una cola para salir después
+- **Manejo de Pasarela Lenta:** Se implementarán timeouts y estados de "Pago Pendiente" para no bloquear el sistema mientras la pasarela responde
+- **Aislamiento de Datos:** Cada microservicio tendrá su propia base de datos (PostgreSQL para transacciones, Redis para reservas rápidas), evitando cuellos de botella compartidos
 
