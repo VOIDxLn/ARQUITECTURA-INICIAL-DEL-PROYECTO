@@ -87,7 +87,7 @@ Las restricciones establecen **limitaciones** en la arquitectura del sistema, ya
 
 ## 7. Contratos de API (Endpoints Principales)
 
-> Para asegurar que los equipos puedan trabajar en paralelo sin que un servicio "toque la base de datos de otro", definimos los puntos de contacto clave:
+> Para asegurar que los equipos puedan trabajar en paralelo sin que un servicio toque la base de datos de otro, definimos los puntos de contacto clave:
 
 **Servicio de Eventos**
 
@@ -104,7 +104,7 @@ Las restricciones establecen **limitaciones** en la arquitectura del sistema, ya
 
 **Servicio de Validación**
 
-- POST /tickets/validate: Recibe el código QR y retorna éxito o error (ej. "ya usado" o "inexistente") de forma eficiente
+- POST /tickets/validate: Recibe el código QR y retorna éxito o error (ej. ya usado o inexistente) de forma eficiente
 
 
 ---
@@ -124,7 +124,7 @@ Las restricciones establecen **limitaciones** en la arquitectura del sistema, ya
 
 # 9. Estrategia de Resiliencia (Manejo de Fallas)
 
-> Para cumplir con la visión de que "no se caiga todo si una parte falla":
+> Para cumplir con la visión de que no se caiga todo si una parte falla:
 
 - **Notificaciones en segundo plano:** Si el servicio de correos falla, la venta se completa y el mensaje queda en una cola para salir después
 - **Manejo de Pasarela Lenta:** Se implementarán timeouts y estados de "Pago Pendiente" para no bloquear el sistema mientras la pasarela responde
