@@ -5,6 +5,10 @@
 ## 1. Introducción  
 Este documento describe la arquitectura inicial del sistema de gestión de órdenes y entregas, incluyendo requisitos funcionales, requisitos de calidad y restricciones que deben ser consideradas en el diseño del software.
 
+---
+### Para acceder al repositorio de cada microservicio por favor ingresar a la wiki donde encontrara la informacion del microservicio y el link a su respectivo repo
+---
+
 **Equipo:** _[Desarrollo 3]_  
 **Integrantes:** _[Juan Alejandro Jimenez Mendoza, Diego Alejandro Galvis Unas]_  
 **Fecha:** _[12/03/2026]_  
