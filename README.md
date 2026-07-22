@@ -1,6 +1,6 @@
 
 
-# Documento de Arquitectura del Sistema de Gestión de Órdenes y Entregas
+# Documento de Arquitectura de Proyecto VivaEventos Microservicios SpringBoot
 
 ## 1. Introducción  
 Este documento describe la arquitectura inicial del sistema de gestión de órdenes y entregas, incluyendo requisitos funcionales, requisitos de calidad y restricciones que deben ser consideradas en el diseño del software.
